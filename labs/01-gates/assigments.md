@@ -13,8 +13,8 @@
 architecture dataflow of demorgan is
 begin
     f_o      <= not b and a or not c and not b;
-    f_nand_o <= not ( c and b and a );
-    f_nor_o  <= not ( c or b or a );
+    f_nand_o <= not (not (not b and a) and (not (not c and not b)));
+    f_nor_o  <= (not (b or not a) or (not (c or b)));
 end architecture dataflow;
 ```
 
@@ -23,12 +23,12 @@ end architecture dataflow;
 | **c** | **b** |**a** | **f(c,b,a)** | **f_NAND(c,b,a)** | **f_NOR(c,b,a)** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | 0 | 0 | 0 | 1 | 1 | 1 |
-| 0 | 0 | 1 | 0 | 1 | 0 |
-| 0 | 1 | 0 | 0 | 1 | 0 |
-| 0 | 1 | 1 | 0 | 1 | 0 |
-| 1 | 0 | 0 | 1 | 1 | 0 |
-| 1 | 0 | 1 | 1 | 1 | 0 |
-| 1 | 1 | 0 | 0 | 1 | 0 |
+| 0 | 0 | 1 | 0 | 0 | 0 |
+| 0 | 1 | 0 | 0 | 0 | 0 |
+| 0 | 1 | 1 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 1 | 1 | 1 |
+| 1 | 0 | 1 | 1 | 1 | 1 |
+| 1 | 1 | 0 | 0 | 0 | 0 |
 | 1 | 1 | 1 | 0 | 0 | 0 |
 
 ### Distributive laws
