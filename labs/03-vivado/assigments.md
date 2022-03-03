@@ -1,5 +1,5 @@
 
-# Lab 3: YOUR_FIRSTNAME LASTNAMEE
+# Lab 3: Gabriel Mastny
 
 ### Three-bit wide 4-to-1 multiplexer
 
