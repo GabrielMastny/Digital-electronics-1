@@ -13,10 +13,51 @@
         s_hex <= "0000"; wait for 50 ns;
         assert (s_seg = "0000001")
         report "Input combination 0000 FAILED" severity error;
-
-
-        -- WRITE OTHER TEST CASES HERE
-
+        s_hex <= "0001"; wait for 50 ns;
+        assert (s_seg = "1001111")
+        report "Input combination 0001 FAILED" severity error;
+        s_hex <= "0010"; wait for 50 ns;
+        assert (s_seg = "0010010")
+        report "Input combination 0010 FAILED" severity error;
+        s_hex <= "0011"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "0100"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "0101"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "0110"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "0111"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1000"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1001"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1010"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1011"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1100"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1101"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1110"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
+        s_hex <= "1111"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
 
         report "Stimulus process finished" severity note;
         wait;
@@ -25,7 +66,7 @@
 
 2. Screenshot with simulated time waveforms. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure]()
+   ![](images/err.png)
 
 ### LED(7:4) indicators
 
@@ -35,22 +76,22 @@
    --------------------------------------------------------------------
    -- Experiments on your own: LED(7:4) indicators
 
-  -- Turn LED(4) on if input value is equal to 0, ie "0000"
-LED(4) <= NOT( SW(0) OR SW(1) OR SW(2) OR SW(3));
+   -- Turn LED(4) on if input value is equal to 0, ie "0000"
+   LED(4) <= NOT( SW(0) OR SW(1) OR SW(2) OR SW(3));
 
--- Turn LED(5) on if input value is greater than "1001", ie 10, 11, 12, ...
-greater_less : process ( SW ) is
-  begin
-  if SW > "1010" then
-    LED(5) <= '1' ;
-  else
-    LED(5) <= '0' ;
-  end if ;
-end process greater_less ;
+   -- Turn LED(5) on if input value is greater than "1001", ie 10, 11, 12, ...
+   greater_less : process ( SW ) is
+   begin
+    if SW > "1010" then
+        LED(5) <= '1' ;
+    else
+        LED(5) <= '0' ;
+    end if ;
+    end process greater_less ;
 
--- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
-LED(6) <= NOT SW(0);
+    -- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
+    LED(6) <= NOT SW(0);
 
--- Turn LED(7) on if input value is a power of two, ie 1, 2, 4, or 8
+    -- Turn LED(7) on if input value is a power of two, ie 1, 2, 4, or 8
 
    ```
