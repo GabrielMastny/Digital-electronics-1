@@ -90,8 +90,11 @@
     end process greater_less ;
 
     -- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
-    LED(6) <= NOT SW(0);
+    LED(6) <= SW(0);
 
     -- Turn LED(7) on if input value is a power of two, ie 1, 2, 4, or 8
 
    ```
+   
+   ![image](https://user-images.githubusercontent.com/26280711/157328596-8564d561-ed86-4d43-bdd8-ad12b459ed24.png)
+
