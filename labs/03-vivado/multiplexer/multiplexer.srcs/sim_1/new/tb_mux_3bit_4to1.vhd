@@ -42,11 +42,11 @@ signal b_s : std_logic_vector(2 downto 0);
 signal c_s : std_logic_vector(2 downto 0);
 signal d_s : std_logic_vector(2 downto 0);
 signal sel_s : std_logic_vector(1 downto 0);
-signal f_s: std_logic_vector(2 dowtno 0);
+signal f_s : std_logic_vector(2 downto 0);
 
 begin
 
-uut_mux_3bit_4tol : entity work.mux_3bit_4tol
+uut_mux_3bit_4to1 : entity work.mux_3bit_4to1
 port map(
     a_i => a_s,
     b_i => b_s,
@@ -66,14 +66,16 @@ p_stimulus : process
         c_s <= "011";
         d_s <= "100";
         
-        sel_s <= "00"
-        wait for 100 ns;
+        sel_s <= "00";
+        wait for 50 ns;
         
         sel_s <= "01";
-        wait for 100 ns;
+        wait for 50 ns;
         
         sel_s <= "10";
-        -- WRITE OTHER TEST CASES HERE
+        wait for 50 ns;
+        
+        sel_s <= "11";
 
 
 
