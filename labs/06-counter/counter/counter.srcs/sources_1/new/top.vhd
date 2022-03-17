@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity top is
     Port ( CLK100MHZ : in STD_LOGIC;
            SW : in STD_LOGIC;
-           LED : out STD_LOGIC_VECTOR (3 downto 0);
+           LED : out STD_LOGIC_VECTOR (15 downto 0);
            CA : out STD_LOGIC;
            CB : out STD_LOGIC;
            CC : out STD_LOGIC;
@@ -49,6 +49,7 @@ end top;
 architecture Behavioral of top is
 
     constant c_CNT_WIDTH         : natural := 4;
+    constant c_CNT_WIDTH2         : natural := 16;
     constant c_CLK_100MHZ_PERIOD : time    := 10 ns;
 
   -- Internal clock enable
@@ -83,6 +84,31 @@ begin
         en_i     => s_en,  -- Enable input
         cnt_up_i => SW,  -- Direction of the counter
         cnt_o    => s_cnt
+      );
+      
+      clk_en1 : entity work.clock_enable
+      generic map(
+          g_MAX => 25000000
+      )
+      port map(
+          clk   => CLK100MHZ,--- WRITE YOUR CODE HERE
+          reset => BTNC,--- WRITE YOUR CODE HERE
+          ce_o  => s_en
+      );
+
+  --------------------------------------------------------------------
+  -- Instance (copy) of cnt_up_down entity
+  bin_cnt1 : entity work.cnt_up_down
+     generic map(
+         g_CNT_WIDTH  => c_CNT_WIDTH
+          --- WRITE YOUR CODE HERE
+      )
+      port map(
+        clk      => CLK100MHZ,
+        reset    => BTNC,  -- Synchronous reset
+        en_i     => s_en,  -- Enable input
+        cnt_up_i => SW,  -- Direction of the counter
+        cnt_o    => LED
       );
 
   --------------------------------------------------------------------
