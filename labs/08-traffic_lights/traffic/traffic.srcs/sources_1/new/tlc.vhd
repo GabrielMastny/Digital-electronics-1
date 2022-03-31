@@ -30,7 +30,9 @@ entity tlc is
         reset   : in  std_logic;
         -- Traffic lights (RGB LEDs) for two directions
         south_o : out std_logic_vector(3 - 1 downto 0);
-        west_o  : out std_logic_vector(3 - 1 downto 0)
+        west_o  : out std_logic_vector(3 - 1 downto 0);
+        sensor1 : in std_logic;
+        sensor2 : in std_logic
     );
 end entity tlc;
 
@@ -56,6 +58,7 @@ architecture Behavioral of tlc is
     signal s_cnt : unsigned(4 downto 0);
 
     -- Specific values for local counter
+    constant c_DELAY_7SEC : unsigned(4 downto 0) := b"1_1111";
     constant c_DELAY_4SEC : unsigned(4 downto 0) := b"1_0000";
     constant c_DELAY_2SEC : unsigned(4 downto 0) := b"0_1000";
     constant c_DELAY_1SEC : unsigned(4 downto 0) := b"0_0100";
@@ -122,8 +125,10 @@ begin
 
                     when WEST_GO =>
                         
-                        
-                        if (s_cnt < c_DELAY_4SEC) then
+                        if (sensor1 = '1' and s_cnt < c_DELAY_7SEC ) then
+                            s_cnt <= s_cnt + 1;
+                            s_state <= WEST_GO;
+                        elsif (s_cnt < c_DELAY_4SEC) then
                             s_cnt <= s_cnt + 1;
                         else
                             -- Move to the next state
@@ -145,9 +150,6 @@ begin
                         end if;
                                                 
                     when STOP2 =>
-                    
-                        
-                    
                         if (s_cnt < c_DELAY_1SEC) then
                                 s_cnt <= s_cnt + 1;
                             else
@@ -159,8 +161,10 @@ begin
                     when SOUTH_GO =>
                     
                         
-                        
-                        if (s_cnt < c_DELAY_4SEC) then
+                        if (sensor2 = '1' and s_cnt < c_DELAY_7SEC ) then
+                            s_cnt <= s_cnt + 1;
+                            s_state <= WEST_GO;
+                        elsif (s_cnt < c_DELAY_4SEC) then
                                 s_cnt <= s_cnt + 1;
                             else
                                 -- Move to the next state

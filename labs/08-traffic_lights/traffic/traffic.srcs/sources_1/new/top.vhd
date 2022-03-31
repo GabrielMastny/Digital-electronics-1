@@ -39,6 +39,8 @@ entity top is
            LED17_R : out STD_LOGIC;
            LED17_G : out STD_LOGIC;
            LED17_B : out STD_LOGIC;
+           SW1 : in STD_LOGIC;
+           SW2 : STD_LOGIC;
            BTNC : in STD_LOGIC);
 end top;
 
@@ -55,7 +57,9 @@ begin
             clk   => CLK100MHZ,
             reset => BTNC,
             south_o => s_southLed,
-            west_o => s_westLed
+            west_o => s_westLed,
+            sensor1 => SW1,
+            sensor2 => SW2
         );
         
     LED16_R <= s_southLed(2);
