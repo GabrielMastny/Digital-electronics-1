@@ -1,4 +1,4 @@
-# Lab 8: YOUR_FIRSTNAME LASTNAME
+# Lab 8: Gabriel Mastny
 
 ### Traffic light controller
 
@@ -120,7 +120,7 @@
 
 3. Screenshot with simulated time waveforms. The full functionality of the entity must be verified. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure]()
+   ![image](https://user-images.githubusercontent.com/26280711/162074477-75d70de7-299c-413e-a37c-f240af4a7432.png)
 
 
 
