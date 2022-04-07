@@ -36,7 +36,16 @@ entity top is
            LED : out STD_LOGIC;
            BTNU : in STD_LOGIC;
            BTNC : in STD_LOGIC;
-           BTND : in STD_LOGIC);
+           BTND : in STD_LOGIC;
+           CA : out STD_LOGIC;
+           CB : out STD_LOGIC;
+           CC : out STD_LOGIC;
+           CD : out STD_LOGIC;
+           CE : out STD_LOGIC;
+           CF : out STD_LOGIC;
+           CG : out STD_LOGIC;
+           AN : out STD_LOGIC_VECTOR (7 downto 0)
+           );
 end top;
 
 architecture Behavioral of top is
@@ -45,6 +54,8 @@ signal s_buttonUp : std_logic;
 signal s_buttonC : std_logic;
 signal s_buttonDWN : std_logic;
 signal s_en : std_logic;
+signal data : std_logic_vector (6 downto 0);
+signal send : std_logic;
 
 
 begin
@@ -92,8 +103,31 @@ clk_en0 : entity work.clock_enable
           reset => '0',--- WRITE YOUR CODE HERE
           ce_o  => s_en
       );
+      
+hex2seg : entity work.hex_7seg
+        port map(
+            hex_i    => data,
+            seg_o(6) => CA,
+            seg_o(5) => CB,
+            seg_o(4) => CC,
+            seg_o(3) => CD,
+            seg_o(2) => CE,
+            seg_o(1) => CF,
+            seg_o(0) => CG
+        );
 
+    -- Connect one common anode to 3.3V
+    AN <= b"1111_0111";
 
-
+state : entity work.state_machine
+port map(
+           clk <= CLK100MHZ,
+           reset <= '0',
+           btn_up <= s_buttonUp,
+           btn_dwn <= s_buttonDWN,
+           btn_enter <= s_buttonC,
+           letter <= data,
+           send <= send
+        );
 
 end Behavioral;
