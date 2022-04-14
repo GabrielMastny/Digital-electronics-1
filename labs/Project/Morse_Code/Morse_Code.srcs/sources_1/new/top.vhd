@@ -34,6 +34,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity top is
     Port ( CLK100MHZ : in STD_LOGIC;
            LED : out STD_LOGIC;
+           LED2 : out STD_LOGIC;
+           LED3 : out STD_LOGIC;
            BTNU : in STD_LOGIC;
            BTNC : in STD_LOGIC;
            BTND : in STD_LOGIC;
@@ -57,40 +59,47 @@ signal s_en : std_logic;
 signal data : std_logic_vector (6 downto 0);
 signal send : std_logic;
 
+signal s_led2 :std_logic;
+signal s_led3 :std_logic;
+
 
 begin
 
+
+LED2 <= s_led2;
+LED3 <= s_led3;
+
 dbcU : entity work.debouncer
          generic map(
-          pwm => 20
+          pwm => 1
                     )
         port map(
-            Clock <= CLK100MHZ,
-            Reset <= '0',
-            button_in <= BTNU,
-            button_out <= s_buttonUp
+            Clock => s_en,
+            Reset => '0',
+            button_in => BTNU,
+            button_out => s_buttonUp
         );
         
 dbcC : entity work.debouncer
     generic map(
-          pwm => 20
+          pwm => 1
                     )
         port map(
-            Clock <= CLK100MHZ,
-            Reset <= '0',
-            button_in <= BTNC,
-            button_out <= s_buttonC
+            Clock => s_en,
+            Reset => '0',
+            button_in => BTNC,
+            button_out => s_buttonC
         );
         
 dbcD : entity work.debouncer
 generic map(
-          pwm => 20
+          pwm => 1
                     )
         port map(
-            Clock <= CLK100MHZ,
-            Reset <= '0',
-            button_in <= BTND,
-            button_out <= s_buttonDWN
+            Clock => s_en,
+            Reset => '0',
+            button_in => BTND,
+            button_out => s_buttonDWN
         );
         
         
@@ -121,13 +130,25 @@ hex2seg : entity work.hex_7seg
 
 state : entity work.state_machine
 port map(
-           clk <= CLK100MHZ,
-           reset <= '0',
-           btn_up <= s_buttonUp,
-           btn_dwn <= s_buttonDWN,
-           btn_enter <= s_buttonC,
-           letter <= data,
-           send <= send
+           clk => CLK100MHZ,
+           reset => '0',
+           btn_up => s_buttonUp,
+           btn_dwn => s_buttonDWN,
+           btn_enter => s_buttonC,
+           enable => s_en,
+           letter => data,
+           send => send,
+           test => s_led2,
+           test2 => s_led3
+        );
+        
+blink : entity work.blinker
+port map(
+           clockEnable => CLK100MHZ,
+           letter => data,
+           enable => '1',
+           morse
+           morseLenght
         );
 
 end Behavioral;

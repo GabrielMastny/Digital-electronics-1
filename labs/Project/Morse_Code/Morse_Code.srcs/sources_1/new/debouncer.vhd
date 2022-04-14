@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity debouncer is
     generic(
-        pwm : natural := 20  
+        pwm : natural := 1  
         );  -- Note that there IS a semicolon between generic 
     port(   Clock : in std_logic;
             Reset : in std_logic;
