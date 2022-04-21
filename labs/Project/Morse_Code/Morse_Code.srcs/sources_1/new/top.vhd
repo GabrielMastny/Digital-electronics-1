@@ -59,13 +59,15 @@ signal s_en : std_logic;
 signal data : std_logic_vector (6 downto 0);
 signal send : std_logic;
 
+signal s_led :std_logic;
 signal s_led2 :std_logic;
 signal s_led3 :std_logic;
-
+signal s_blinkerEnable : std_logic := '0';
+signal s_finished : std_logic;
 
 begin
 
-
+LED <= s_led;
 LED2 <= s_led2;
 LED3 <= s_led3;
 
@@ -137,18 +139,20 @@ port map(
            btn_enter => s_buttonC,
            enable => s_en,
            letter => data,
+           finished => s_finished,
            send => send,
-           test => s_led2,
-           test2 => s_led3
+           test2 => s_led3,
+           blinkerEnable => s_blinkerEnable
         );
         
 blink : entity work.blinker
 port map(
-           clockEnable => CLK100MHZ,
+           clockEnable => s_en,
            letter => data,
-           enable => '1',
-           morse
-           morseLenght
+           enable => s_blinkerEnable,
+           test => s_led2,
+           finished => s_finished,
+           led => s_led
         );
 
 end Behavioral;

@@ -39,9 +39,10 @@ entity state_machine is
            btn_dwn : in STD_LOGIC;
            btn_enter : in STD_LOGIC;
            enable : in STD_LOGIC;
+           blinkerEnable : out STD_LOGIC;
            letter : out STD_LOGIC_VECTOR( 6 downto 0);
            send : out STD_LOGIC;
-           test : out STD_LOGIC;
+           finished : in STD_LOGIC;
            test2 : out STD_LOGIC);
 end state_machine;
 
@@ -56,10 +57,11 @@ architecture Behavioral of state_machine is
     
     signal s_en : std_logic;
     
+    signal s_blinkerEnable : std_logic;
+    
     signal s_letter : unsigned(6 downto 0):= "0000000";
 
 begin
-
 s_en <= enable;
 letter <= std_logic_vector(s_letter);
 
@@ -70,7 +72,6 @@ morse : process(clk)
                 s_state <= IDLE;   -- Set initial state
 
             elsif (s_en = '1') then
-                test <= '1';
                 case s_state is
                 
                     when IDLE =>
@@ -81,6 +82,7 @@ morse : process(clk)
                         elsif (btn_dwn = '1') then
                             s_state <= BTNDOWN;
                         elsif ( btn_enter = '1') then
+                            blinkerEnable <= '1';
                             s_state <= BTNENTER;
                         else
                             s_state <= IDLE;
@@ -89,7 +91,7 @@ morse : process(clk)
                     when BTNUP =>
                          
                          s_state <= IDLE;
-                         test2 <= '1';
+                         
                          
                          if (s_letter = "0100011") then
                             s_letter <= "0000000";
@@ -107,15 +109,18 @@ morse : process(clk)
                         end if;
                          
                     when BTNENTER =>
-                         send <= '1';
-                         s_state <= IDLE;
+                        test2 <= '1';
+                        if ( finished = '1') then
+                            blinkerEnable <= '0';
+                            s_state <= IDLE;
+                        end if;
+                    
                         
                     when others =>
                         s_state <= IDLE;
                 end case;
                 
             else
-            test <= '0';
             end if; -- Synchronous reset
         end if; -- Rising edge
     end process morse;

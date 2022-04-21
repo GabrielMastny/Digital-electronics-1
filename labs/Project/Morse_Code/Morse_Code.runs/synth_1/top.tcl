@@ -88,6 +88,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
+  D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/blinker.vhd
   D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/clock_enable.vhd
   D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/debouncer.vhd
   D:/Documents/xmastn02/digital-electronics-1/labs/04-segment/display/display.srcs/sources_1/new/hex_7seg.vhd

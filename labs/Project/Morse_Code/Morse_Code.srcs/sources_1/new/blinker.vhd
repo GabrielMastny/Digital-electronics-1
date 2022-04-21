@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;   -- Package for arithmetic operations
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -35,25 +36,29 @@ entity blinker is
   Port (
     clockEnable : in STD_LOGIC;
     letter : in STD_LOGIC_VECTOR( 6 downto 0);
-    enable : inout STD_LOGIC;
-    morse : out std_logic_vector( 4 downto 0));
+    enable : in STD_LOGIC;
+    finished : out STD_LOGIC;
+    test : out STD_LOGIC;
+    led : out std_logic);
 end blinker;
 
 architecture Behavioral of blinker is
 
 signal s_morse : std_logic_vector( 4 downto 0);
-signal s_morseLenght : std_logic_vector( 2 downto 0);
-
+signal s_morseLenght : unsigned( 2 downto 0);
+signal s_morseIterator : unsigned( 2 downto 0);
+signal s_timingIterator : unsigned( 2 downto 0);
 begin
 
-morseDecoder : process(letter)
+morseDecoder : process(letter, clockEnable)
     begin
         case letter is
             when "0000000" =>
-                s_morse <= "00000"; -- 0
+                s_morse <= "11111"; -- 0
                 s_morseLenght <="101";
---            when "0000001" =>
---                seg_o <= "1001111"; -- 1
+            when "0000001" =>
+                s_morse <= "11110"; -- 1
+                s_morseLenght <="101";
 --            when "0000010" =>
 --                seg_o <= "0010010"; -- 2
 --            when "0000011" =>
@@ -121,26 +126,45 @@ morseDecoder : process(letter)
 --            when "0100010" =>
 --                seg_o <= "1000100"; -- Y
             when others =>
-                s_morse <= "01111"; -- 1
-                s_morseLenght <="101";
+                s_morse <= "00011"; -- 1
+                s_morseLenght <="100";
         end case;
     end process morseDecoder;
 
-    blinkdecoder : process(s_morseLenght)
+    blinkdecoder : process(s_morseLenght, clockEnable)
     begin
-        case s_morseLenght is
-            when "101" =>
+        
+        if (clockEnable'event and clockEnable = '1') then
+        
+                if ( s_morseIterator = s_morseLenght) then
+                    finished <= '1';
+                    s_morseIterator <= to_unsigned(0,3);
+                    test<= '1';
+                elsif (enable ='1') then
+                    finished <= '0';
+                    test<= '0';
+                    if ((s_morse(to_integer(s_morseIterator))) = '1') then
+                        led <= '1';
+                        if ( s_timingIterator = 3) then
+                            led <= '0';
+                            s_timingIterator <= (to_unsigned(0,3));
+                            s_morseIterator <= s_morseIterator+1;
+                        else
+                            s_timingIterator <= s_timingIterator + 1;
+                        end if;
+                    elsif ((s_morse(to_integer(s_morseIterator))) = '0') then
+                        led <= '1';
+                        if ( s_timingIterator = 1) then
+                            led <= '0';
+                            s_timingIterator <= to_unsigned(0,3);
+                            s_morseIterator <= s_morseIterator+1;
+                        else
+                            s_timingIterator <= s_timingIterator + 1;
+                        end if;
+                    end if;
                 
-            when "100" =>
-            
-            when "011" =>
-            
-            when "010" =>
-            
-            when "001" =>
-            when others =>
-            
-        end case;
+                end if;
+        end if;
     end process blinkdecoder;
 
 
