@@ -1,9 +1,9 @@
-# YOUR_PROJECT_TITLE
+# Morse code transmitter, ie converter of characters/numbers to Morse code.
 
 ### Team members
 
-* Mastný - všechno
-* Fedor - všechno
+* Mastný - everything
+* Fedor - everything
 
 ### Table of contents
 
