@@ -33,13 +33,27 @@ For this project is only needed board Nexys A7-50T with no extra hardware.
 
 State_machine module
 
+state_machine module handles input and based on it defines letter that should be visualized on 7segment display and transmitted via led light.
+
 ![](https://github.com/GabrielMastny/digital-electronics-1/blob/main/labs/Project/stateMachineTestBench.png)
 
 debouncer
 
+debouncer responsibility is to disable microflickering of pressed button
+
 ![](https://github.com/GabrielMastny/digital-electronics-1/blob/main/labs/Project/debouncerTest.png)
 
 blinker
+
+7 segment 
+
+this module was covered during lectures
+
+clock enable
+
+this module was covered during lectures
+
+
 
 <a name="top"></a>
 
