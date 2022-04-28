@@ -31,25 +31,31 @@ For this project is only needed board Nexys A7-50T with no extra hardware.
 
 ## VHDL modules description and simulations
 
-State_machine module
+**State_machine module**
 
 state_machine module handles input and based on it defines letter that should be visualized on 7segment display and transmitted via led light.
 
 ![](https://github.com/GabrielMastny/digital-electronics-1/blob/main/labs/Project/stateMachineTestBench.png)
 
-debouncer
+**debouncer**
 
 debouncer responsibility is to disable microflickering of pressed button
 
 ![](https://github.com/GabrielMastny/digital-electronics-1/blob/main/labs/Project/debouncerTest.png)
 
-blinker
+**blinker**
 
-7 segment 
+when letter is selected and module recieves enable flag it will via led signal trnsmit morse code, when the transmition is finished the finished flag wil be set to 0.
+
+
+![image](https://user-images.githubusercontent.com/26280711/165842623-d1ab68f1-d465-4997-8b73-b950991fef6c.png)
+
+
+**7 segment** 
 
 this module was covered during lectures
 
-clock enable
+**clock enable**
 
 this module was covered during lectures
 
