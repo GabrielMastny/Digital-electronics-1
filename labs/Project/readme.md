@@ -65,7 +65,9 @@ this module was covered during lectures
 
 ## TOP module description and simulations
 
+Top module glues all modules above together
 
+unfotunatelly eda could not for some reason draw the waveform
 
 <a name="video"></a>
 
