@@ -18,31 +18,39 @@
 
 ## Project objectives
 
-Write your text here.
+
 
 <a name="hardware"></a>
 
 ## Hardware description
 
-Write your text here.
+For this project is only needed board Nexys A7-50T with no extra hardware.
 
 <a name="modules"></a>
 
 ## VHDL modules description and simulations
 
-Write your text here.
+State_machine module
+
+![](https://github.com/GabrielMastny/digital-electronics-1/blob/main/labs/Project/stateMachineTestBench.png)
+
+debouncer
+
+![](https://github.com/GabrielMastny/digital-electronics-1/blob/main/labs/Project/debouncerTest.png)
+
+blinker
 
 <a name="top"></a>
 
 ## TOP module description and simulations
 
-Write your text here.
+
 
 <a name="video"></a>
 
 ## Video
 
-Write your text here
+<a href="https://app.animaker.com/animo/C2ZFqOrO9pvQOa5A/"> video here</a>
 
 <a name="references"></a>
 
