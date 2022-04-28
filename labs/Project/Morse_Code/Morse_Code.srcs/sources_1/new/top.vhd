@@ -33,9 +33,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity top is
     Port ( CLK100MHZ : in STD_LOGIC;
+           RESET : in STD_LOGIC;
            LED : out STD_LOGIC;
-           LED2 : out STD_LOGIC;
-           LED3 : out STD_LOGIC;
            BTNU : in STD_LOGIC;
            BTNC : in STD_LOGIC;
            BTND : in STD_LOGIC;
@@ -60,16 +59,12 @@ signal data : std_logic_vector (6 downto 0);
 signal send : std_logic;
 
 signal s_led :std_logic;
-signal s_led2 :std_logic;
-signal s_led3 :std_logic;
 signal s_blinkerEnable : std_logic := '0';
 signal s_finished : std_logic;
 
 begin
 
 LED <= s_led;
-LED2 <= s_led2;
-LED3 <= s_led3;
 
 dbcU : entity work.debouncer
          generic map(
@@ -111,7 +106,7 @@ clk_en0 : entity work.clock_enable
       )
       port map(
           clk   => CLK100MHZ,--- WRITE YOUR CODE HERE
-          reset => '0',--- WRITE YOUR CODE HERE
+          reset => RESET,--- WRITE YOUR CODE HERE
           ce_o  => s_en
       );
       
@@ -133,7 +128,7 @@ hex2seg : entity work.hex_7seg
 state : entity work.state_machine
 port map(
            clk => CLK100MHZ,
-           reset => '0',
+           reset => RESET,
            btn_up => s_buttonUp,
            btn_dwn => s_buttonDWN,
            btn_enter => s_buttonC,
@@ -141,16 +136,15 @@ port map(
            letter => data,
            finished => s_finished,
            send => send,
-           test2 => s_led3,
            blinkerEnable => s_blinkerEnable
         );
         
 blink : entity work.blinker
 port map(
            clockEnable => s_en,
+           reset => RESET,
            letter => data,
            enable => s_blinkerEnable,
-           test => s_led2,
            finished => s_finished,
            led => s_led
         );

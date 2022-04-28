@@ -35,10 +35,10 @@ use ieee.numeric_std.all;   -- Package for arithmetic operations
 entity blinker is
   Port (
     clockEnable : in STD_LOGIC;
+    reset : in STD_LOGIC;
     letter : in STD_LOGIC_VECTOR( 6 downto 0);
     enable : in STD_LOGIC;
     finished : out STD_LOGIC;
-    test : out STD_LOGIC;
     led : out std_logic);
 end blinker;
 
@@ -52,97 +52,139 @@ begin
 
 morseDecoder : process(letter, clockEnable)
     begin
-        case letter is
-            when "0000000" =>
-                s_morse <= "11111"; -- 0
-                s_morseLenght <="101";
-            when "0000001" =>
-                s_morse <= "11110"; -- 1
-                s_morseLenght <="101";
---            when "0000010" =>
---                seg_o <= "0010010"; -- 2
---            when "0000011" =>
---                seg_o <= "0000110"; -- 3
---            when "0000100" =>
---                seg_o <= "1001100"; -- 4
---            when "0000101" =>
---                seg_o <= "0100100"; -- 5
---            when "0000110" =>
---                seg_o <= "0100000"; -- 6
---            when "0000111" =>
---                seg_o <= "0001111"; -- 7
---            when "0001000" =>
---                seg_o <= "0000000"; -- 8
---            when "0001001" =>
---                seg_o <= "0000100"; -- 9
---            when "0001010" =>
---                seg_o <= "0001000"; -- A
---            when "0001011" =>
---                seg_o <= "1100000"; -- b
---            when "0001100" =>
---                seg_o <= "0110001"; -- C
---            when "0001101" =>
---                seg_o <= "1000010"; -- d
---            when "0001110" =>
---                seg_o <= "0110000"; -- E
---            when "0001111" =>
---                seg_o <= "0111000"; -- F
---            when "0010000" =>
---                seg_o <= "0100001"; -- G
---            when "0010001" =>
---                seg_o <= "1101000"; -- H
---            when "0010010" =>
---                seg_o <= "1101111"; -- i
---            when "0010011" =>
---                seg_o <= "1000011"; -- J
---            when "0010100" =>
---                seg_o <= "0101000"; -- K
---            when "0010101" =>
---                seg_o <= "1110001"; -- L
---            when "0010110" =>
---                seg_o <= "0101010"; -- M
---            when "0010111" =>
---                seg_o <= "1101010"; -- N
---            when "0011000" =>
---                seg_o <= "1100010"; -- o
---            when "0011001" =>
---                seg_o <= "0011000"; -- P
---            when "0011010" =>
---                seg_o <= "0001100"; -- q
---            when "0011011" =>
---                seg_o <= "1111010"; -- r
---            when "0011100" =>
---                seg_o <= "0100101"; -- S
---            when "0011101" =>
---                seg_o <= "1000110"; -- t
---            when "0011110" =>
---                seg_o <= "1000001"; -- U
---            when "0011111" =>
---                seg_o <= "1100011"; -- V
---            when "0100000" =>
---                seg_o <= "1010100"; -- W
---            when "0100001" =>
---                seg_o <= "1001000"; -- X
---            when "0100010" =>
---                seg_o <= "1000100"; -- Y
-            when others =>
-                s_morse <= "00011"; -- 1
-                s_morseLenght <="100";
-        end case;
+        if rising_edge(clockEnable) then
+            if (reset = '1') then
+            s_morse <= "00000"; -- 0
+            s_morseLenght <="000";
+            else
+                case letter is
+                    when "0000000" =>
+                        s_morse <= "11111"; -- 0
+                        s_morseLenght <="101";
+                    when "0000001" =>
+                        s_morse <= "11110"; -- 1
+                        s_morseLenght <="101";
+                    when "0000010" =>
+                        s_morse <= "11100"; -- 2
+                        s_morseLenght <="101";
+                    when "0000011" =>
+                        s_morse <= "11000"; -- 3
+                        s_morseLenght <="101";
+                    when "0000100" =>
+                        s_morse <= "10000"; -- 4
+                        s_morseLenght <="101";
+                    when "0000101" =>
+                        s_morse <= "00000"; -- 5
+                        s_morseLenght <="101";
+                    when "0000110" =>
+                        s_morse <= "00001"; -- 6
+                        s_morseLenght <="101";
+                    when "0000111" =>
+                        s_morse <= "00011"; -- 7
+                        s_morseLenght <="101";
+                    when "0001000" =>
+                        s_morse <= "00111"; -- 8
+                        s_morseLenght <="101";
+                    when "0001001" =>
+                        s_morse <= "01111"; -- 9
+                        s_morseLenght <="101";
+                    when "0001010" =>
+                        s_morse <= "00010"; -- A
+                        s_morseLenght <="010";
+                    when "0001011" =>
+                        s_morse <= "00001"; -- B
+                        s_morseLenght <="100";
+                    when "0001100" =>
+                        s_morse <= "00101"; -- C
+                        s_morseLenght <="100";
+                    when "0001101" =>
+                        s_morse <= "00001"; -- D
+                        s_morseLenght <="011";
+                    when "0001110" =>
+                        s_morse <= "00000"; -- E
+                        s_morseLenght <="001";
+                    when "0001111" =>
+                        s_morse <= "00100"; -- F
+                        s_morseLenght <="100";
+                    when "0010000" =>
+                        s_morse <= "00011"; -- G
+                        s_morseLenght <="011";
+                    when "0010001" =>
+                        s_morse <= "00000"; -- H
+                        s_morseLenght <="100";
+                    when "0010010" =>
+                        s_morse <= "00000"; -- I
+                        s_morseLenght <="010";
+                    when "0010011" =>
+                        s_morse <= "01110"; -- J
+                        s_morseLenght <="100";
+                    when "0010100" =>
+                        s_morse <= "00101"; -- K
+                        s_morseLenght <="011";
+                    when "0010101" =>
+                        s_morse <= "00010"; -- L
+                        s_morseLenght <="100";
+                    when "0010110" =>
+                        s_morse <= "00011"; -- M
+                        s_morseLenght <="010";
+                    when "0010111" =>
+                        s_morse <= "00001"; -- N
+                        s_morseLenght <="010";
+                    when "0011000" =>
+                        s_morse <= "00111"; -- O
+                        s_morseLenght <="011";
+                    when "0011001" =>
+                        s_morse <= "00110"; -- P
+                        s_morseLenght <="100";
+                    when "0011010" =>
+                        s_morse <= "01011"; -- Q
+                        s_morseLenght <="100";
+                    when "0011011" =>
+                        s_morse <= "00010"; -- R
+                        s_morseLenght <="010";
+                    when "0011100" =>
+                        s_morse <= "00000"; -- S
+                        s_morseLenght <="011";
+                    when "0011101" =>
+                        s_morse <= "00001"; -- T
+                        s_morseLenght <="001";
+                    when "0011110" =>
+                        s_morse <= "00100"; -- U
+                        s_morseLenght <="011";
+                    when "0011111" =>
+                        s_morse <= "01000"; -- V
+                        s_morseLenght <="100";
+                    when "0100000" =>
+                        s_morse <= "00110"; -- W
+                        s_morseLenght <="011";
+                    when "0100001" =>
+                        s_morse <= "01001"; -- X
+                        s_morseLenght <="100";
+                    when "0100010" =>
+                        s_morse <= "01101"; -- Y
+                        s_morseLenght <="100";
+                    when others =>
+                        s_morse <= "00011"; -- Z
+                        s_morseLenght <="100";
+                end case; 
+            end if;
+        end if;        
     end process morseDecoder;
 
-    blinkdecoder : process(s_morseLenght, clockEnable)
+    blinkdecoder : process(s_morseLenght, clockEnable, reset)
     begin
-        
-        if (clockEnable'event and clockEnable = '1') then
-        
+        if rising_edge(clockEnable) then
+            if (reset = '1') then
+                finished <= '1';
+                led <= '0';
+                s_timingIterator <= (to_unsigned(0,3));
+                s_morseIterator <= (to_unsigned(0,3));
+            else                
                 if ( s_morseIterator = s_morseLenght) then
                     finished <= '1';
                     s_morseIterator <= to_unsigned(0,3);
-                    test<= '1';
                 elsif (enable ='1') then
                     finished <= '0';
-                    test<= '0';
                     if ((s_morse(to_integer(s_morseIterator))) = '1') then
                         led <= '1';
                         if ( s_timingIterator = 3) then
@@ -162,8 +204,8 @@ morseDecoder : process(letter, clockEnable)
                             s_timingIterator <= s_timingIterator + 1;
                         end if;
                     end if;
-                
                 end if;
+            end if;
         end if;
     end process blinkdecoder;
 

@@ -42,8 +42,7 @@ entity state_machine is
            blinkerEnable : out STD_LOGIC;
            letter : out STD_LOGIC_VECTOR( 6 downto 0);
            send : out STD_LOGIC;
-           finished : in STD_LOGIC;
-           test2 : out STD_LOGIC);
+           finished : in STD_LOGIC);
 end state_machine;
 
 architecture Behavioral of state_machine is
@@ -70,13 +69,13 @@ morse : process(clk)
         if rising_edge(clk) then
             if (reset = '1') then   -- Synchronous reset
                 s_state <= IDLE;   -- Set initial state
-
+                blinkerEnable <= '0';
+                s_letter <= "0000000";
             elsif (s_en = '1') then
                 case s_state is
                 
                     when IDLE =>
-                        send <= '0';
-                        test2 <= '0';    
+                        send <= '0';   
                         if (btn_up = '1') then
                             s_state <= BTNUP;
                         elsif (btn_dwn = '1') then
@@ -109,7 +108,6 @@ morse : process(clk)
                         end if;
                          
                     when BTNENTER =>
-                        test2 <= '1';
                         if ( finished = '1') then
                             blinkerEnable <= '0';
                             s_state <= IDLE;
