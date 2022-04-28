@@ -56,7 +56,6 @@ signal s_buttonC : std_logic;
 signal s_buttonDWN : std_logic;
 signal s_en : std_logic;
 signal data : std_logic_vector (6 downto 0);
-signal send : std_logic;
 
 signal s_led :std_logic;
 signal s_blinkerEnable : std_logic := '0';
@@ -135,7 +134,6 @@ port map(
            enable => s_en,
            letter => data,
            finished => s_finished,
-           send => send,
            blinkerEnable => s_blinkerEnable
         );
         

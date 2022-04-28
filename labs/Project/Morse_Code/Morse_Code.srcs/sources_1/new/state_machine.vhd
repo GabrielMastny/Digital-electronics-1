@@ -41,7 +41,6 @@ entity state_machine is
            enable : in STD_LOGIC;
            blinkerEnable : out STD_LOGIC;
            letter : out STD_LOGIC_VECTOR( 6 downto 0);
-           send : out STD_LOGIC;
            finished : in STD_LOGIC);
 end state_machine;
 
@@ -74,8 +73,7 @@ morse : process(clk)
             elsif (s_en = '1') then
                 case s_state is
                 
-                    when IDLE =>
-                        send <= '0';   
+                    when IDLE => 
                         if (btn_up = '1') then
                             s_state <= BTNUP;
                         elsif (btn_dwn = '1') then

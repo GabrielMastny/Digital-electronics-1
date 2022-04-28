@@ -1,0 +1,12 @@
+0.7
+2020.1
+May 27 2020
+20:09:33
+D:/Documents/xmastn02/digital-electronics-1/labs/04-segment/display/display.srcs/sources_1/new/hex_7seg.vhd,1649332255,vhdl,D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/top.vhd,,,hex_7seg,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sim_1/new/blinker_tb.vhd,1651150370,vhdl,,,,blinker_tb,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sim_1/new/state_machine_tb.vhd,1651149256,vhdl,,,,state_machine_tb,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/blinker.vhd,1651148927,vhdl,D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sim_1/new/blinker_tb.vhd,,,blinker,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/clock_enable.vhd,1647519934,vhdl,D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/top.vhd,,,clock_enable,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/debouncer.vhd,1649935853,vhdl,D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/top.vhd,,,debouncer,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/state_machine.vhd,1651148472,vhdl,D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sim_1/new/state_machine_tb.vhd,,,state_machine,,,,,,,,
+D:/Documents/xmastn02/digital-electronics-1/labs/Project/Morse_Code/Morse_Code.srcs/sources_1/new/top.vhd,1651146085,vhdl,,,,top,,,,,,,,

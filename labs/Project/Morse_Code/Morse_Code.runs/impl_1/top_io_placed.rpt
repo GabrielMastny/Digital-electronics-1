@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date                      : Thu Apr 28 13:36:34 2022
+| Date                      : Thu Apr 28 14:29:57 2022
 | Host                      : PC-631 running 64-bit major release  (build 9200)
 | Command                   : report_io -file top_io_placed.rpt
 | Design                    : top
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|            23 |
+|            21 |
 +---------------+
 
 
@@ -191,7 +191,7 @@ Table of Contents
 | J10        |             | Dedicated  | VP_0                         | XADC        |             |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | J11        |             |            | VCCINT                       | VCCINT      |             |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | J12        |             |            | GND                          | GND         |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
-| J13        | LED3        | High Range | IO_L17N_T2_A25_15            | OUTPUT      | LVCMOS33    |      15 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| J13        |             | High Range | IO_L17N_T2_A25_15            | User IO     |             |      15 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | J14        | AN[3]       | High Range | IO_L19P_T3_A22_15            | OUTPUT      | LVCMOS33    |      15 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | J15        |             | High Range | IO_L24N_T3_RS0_15            | User IO     |             |      15 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | J16        |             |            | GND                          | GND         |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
@@ -211,7 +211,7 @@ Table of Contents
 | K12        |             |            | VCCAUX                       | VCCAUX      |             |         |            |      |                     |                      |    1.80 |            |           |          |      |                  |              |                   |              |
 | K13        | CD          | High Range | IO_L17P_T2_A26_15            | OUTPUT      | LVCMOS33    |      15 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | K14        |             | High Range | VCCO_15                      | VCCO        |             |      15 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
-| K15        | LED2        | High Range | IO_L24P_T3_RS1_15            | OUTPUT      | LVCMOS33    |      15 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| K15        |             | High Range | IO_L24P_T3_RS1_15            | User IO     |             |      15 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | K16        | CC          | High Range | IO_25_15                     | OUTPUT      | LVCMOS33    |      15 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | K17        |             | High Range | IO_L1P_T0_D00_MOSI_14        | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | K18        |             | High Range | IO_L1N_T0_D01_DIN_14         | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
