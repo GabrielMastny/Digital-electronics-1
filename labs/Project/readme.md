@@ -18,7 +18,8 @@
 
 ## Project objectives
 
-
+Create morsecode transmiter.
+by up and down buttons you can select alphanumerical character and then by pressing center butten it will be transmitted by led light in morse code.
 
 <a name="hardware"></a>
 
@@ -50,7 +51,7 @@ blinker
 
 ## Video
 
-<a href="https://app.animaker.com/animo/C2ZFqOrO9pvQOa5A/"> video here</a>
+<a href="https://app.animaker.com/animo/C2ZFqOrO9pvQOa5A/"> comented video here</a>
 
 <a name="references"></a>
 
